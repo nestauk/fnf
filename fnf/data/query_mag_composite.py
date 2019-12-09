@@ -3,10 +3,15 @@ from retrying import retry
 
 ENDPOINT = "https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate"
 
+
 def build_composite_expr(query_values, entity_name, year):
-  query_prefix_format = "expr=OR({})"
-  and_queries = [''.join([f"And(Composite({entity_name}='{query_value}'), Y>={year})"]) for query_value in query_values]
-  return query_prefix_format.format(", ".join(and_queries))
+    query_prefix_format = "expr=OR({})"
+    and_queries = [
+        "".join([f"And(Composite({entity_name}='{query_value}'), Y>={year})"])
+        for query_value in query_values
+    ]
+    return query_prefix_format.format(", ".join(and_queries))
+
 
 @retry(stop_max_attempt_number=1)
 def query_mag_api(expr, fields, subscription_key, query_count=1000, offset=0):
