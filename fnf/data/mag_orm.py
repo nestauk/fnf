@@ -8,7 +8,7 @@ Base = declarative_base()
 
 
 class Paper(Base):
-    """MAG paper. Collected by matching its title with a title from BioarXiv."""
+    """MAG papers."""
 
     __tablename__ = "mag_papers"
 
@@ -45,6 +45,8 @@ class Journal(Base):
 
 
 class PaperAuthor(Base):
+    """Authors of a paper."""
+    
     __tablename__ = "mag_paper_authors"
 
     paper_id = Column(
@@ -59,6 +61,8 @@ class PaperAuthor(Base):
 
 
 class Author(Base):
+    """Details of an author."""
+    
     __tablename__ = "mag_authors"
 
     id = Column(BIGINT, primary_key=True, autoincrement=False)
@@ -68,6 +72,8 @@ class Author(Base):
 
 
 class Affiliation(Base):
+    """Details of an author affiliation."""
+
     __tablename__ = "mag_affiliation"
 
     id = Column(BIGINT, primary_key=True)
@@ -76,6 +82,8 @@ class Affiliation(Base):
     aff_location = relationship("AffiliationLocation")
 
 class AuthorAffiliation(Base):
+    """Linking author with their affiliation."""
+    
     __tablename__ = "mag_author_affiliation"
 
     affiliation_id = Column(
@@ -99,6 +107,8 @@ class FieldOfStudy(Base):
 
 
 class PaperFieldsOfStudy(Base):
+    """Linking papers with their fields of study."""
+    
     __tablename__ = "mag_paper_fields_of_study"
 
     paper_id = Column(
@@ -115,6 +125,8 @@ class PaperFieldsOfStudy(Base):
 
 
 class AffiliationLocation(Base):
+    """Geographic information of an affiliation."""
+
     __tablename__ = "geocoded_places"
 
     id = Column(TEXT, primary_key=True, autoincrement=False)
