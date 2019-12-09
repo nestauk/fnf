@@ -5,6 +5,16 @@ ENDPOINT = "https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate"
 
 
 def build_composite_expr(query_values, entity_name, year):
+    """Builds a composite expression with ANDs in OR to be used as MAG query.
+
+    Args:
+        query_values (:obj:`list` of str): Phrases to query MAG with. 
+        entity_name (str): MAG attribute that will be used in query.
+        year (int): We collect data in the [year, now] timeframe.
+    Returns:
+        (str) MAG expression.
+    
+    """
     query_prefix_format = "expr=OR({})"
     and_queries = [
         "".join([f"And(Composite({entity_name}='{query_value}'), Y>={year})"])
@@ -33,7 +43,7 @@ def query_mag_api(expr, fields, subscription_key, query_count=1000, offset=0):
         "Ocp-Apim-Subscription-Key": subscription_key,
         "Content-Type": "application/x-www-form-urlencoded",
     }
-    query = f"{expr}&count={query_count}&offset={offset}&attributes={','.join(fields)}"
+    query = f"{expr}&count={query_count}&offset={offset}&model=latest&attributes={','.join(fields)}"
 
     r = requests.post(ENDPOINT, data=query.encode("utf-8"), headers=headers)
     r.raise_for_status()
