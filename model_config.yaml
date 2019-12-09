@@ -7,3 +7,5 @@ data:
         query_count: 1000
         offset: 0
         store_path: '../data/external/mag_response'
+    external:
+        path: '../data/external/'
