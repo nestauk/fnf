@@ -23,7 +23,7 @@ def build_composite_expr(query_values, entity_name, year):
     return query_prefix_format.format(", ".join(and_queries))
 
 
-@retry(stop_max_attempt_number=1)
+@retry(stop_max_attempt_number=5)
 def query_mag_api(expr, fields, subscription_key, query_count=1000, offset=0):
     """Posts a query to the Microsoft Academic Graph Evaluate API.
 
