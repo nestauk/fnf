@@ -148,10 +148,21 @@ class AffiliationLocation(Base):
 
 if __name__ == "__main__":
     import os
+    import logging
     from dotenv import load_dotenv, find_dotenv
-    from sqlalchemy import create_engine
+    from sqlalchemy import create_engine, exc
 
     load_dotenv(find_dotenv())
+
+    # Try to create the database if it doesn't already exist.
+    try:
+        engine = create_engine(os.getenv("test_postgresdb")) 
+        conn = engine.connect()
+        conn.execute("commit") 
+        conn.execute("create database disinfo") 
+        conn.close() 
+    except exc.DBAPIError as e:
+        logging.info(e)
     
     db_config = os.getenv('postgresdb')
     engine = create_engine(db_config)
