@@ -5,7 +5,6 @@ data:
         fos: ["disinformation", "misinformation", "fake news", "factoid", "half truth", "misinformation effect"]
         entity_name: 'F.FN'
         query_count: 1000
-        offset: 0
-        store_path: '../data/external/mag_response'
+        store_path: 'data/external/mag_response'
     external:
-        path: '../data/external/'
+        path: 'data/external/'
