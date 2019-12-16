@@ -160,10 +160,14 @@ if __name__ == "__main__":
         conn = engine.connect()
         conn.execute("commit") 
         conn.execute("create database disinfo") 
-        conn.close() 
+        conn.close()
     except exc.DBAPIError as e:
-        logging.info(e)
-    
+        if isinstance(e.orig, psycopg2.errors.DuplicateDataBase):
+            logging.info(e)
+        else:
+            logging.error(e)
+            raise
+
     db_config = os.getenv('postgresdb')
     engine = create_engine(db_config)
     Base.metadata.create_all(engine)
