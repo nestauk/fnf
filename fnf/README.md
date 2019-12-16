@@ -8,8 +8,8 @@ Then, run `python mag_orm.py` to create the project's database (`disinfo`) and i
 Note that the `.env` file contains two connections to PostgreSQL in the following format:
 
 ``` python
-postgresdb = postgres+psycopg2://NAME:PASSWORD@localhost:5432/disinfo
-test_postgresdb = postgres+psycopg2://NAME:PASSWORD@localhost:5432/postgres
+postgresdb = postgres+psycopg2://postgres@localhost/disinfo
+test_postgresdb = postgres+psycopg2://postgres@localhost/postgres
 ```
 
 `disinfo`: the project's database.
