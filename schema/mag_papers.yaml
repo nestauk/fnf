@@ -1,0 +1,15 @@
+API: Academic Knowledge API
+endpoint: https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate
+schema:
+    id: integer
+    prob: float
+    title: string
+    publication_type: string
+    year: string
+    date: string # YYYY-MM-DD
+    citations: integer
+    references: integer[]
+    doi: string
+    publisher: string
+    bibtext_doc_type: string
+    inverted_abstract: {}

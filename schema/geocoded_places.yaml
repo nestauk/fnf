@@ -1,0 +1,15 @@
+API: Google Places API
+endpoint: https://maps.googleapis.com/maps/api/place/details/json?
+schema:
+    id: string
+    affiliation_id: integer
+    lat: float
+    lng: float
+    address: string
+    name: string
+    types: string[]
+    website: string
+    postal_town: string
+    administrative_area_level_2: string
+    administrative_area_level_1: string
+    country: string
