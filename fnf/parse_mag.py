@@ -38,16 +38,14 @@ if __name__ == "__main__":
 
     data = []
     for filename in glob.iglob("".join([external_data, "*.pickle"])):
-        # print(filename)
         with open(filename, "rb") as h:
             data.extend(pickle.load(h))
-    # print(len(data))
 
     data = [d for d in unique_dicts_by_value(data, "Id")]
     logging.info(f"Number of unique  papers: {len(data)}")
 
     papers = [parse_papers(response) for response in data]
-    # logging.info(f'Completed parsing papers: {len(papers)}')
+    logging.info(f"Completed parsing papers: {len(papers)}")
 
     journals = [
         parse_journal(response, response["Id"])
