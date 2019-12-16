@@ -1,0 +1,7 @@
+API: Academic Knowledge API
+endpoint: https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate
+schema:
+    author_id: integer
+    paper_id: integer
+    order: integer
+
