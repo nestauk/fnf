@@ -149,6 +149,7 @@ class AffiliationLocation(Base):
 if __name__ == "__main__":
     import os
     import logging
+    import psycopg2
     from dotenv import load_dotenv, find_dotenv
     from sqlalchemy import create_engine, exc
 
@@ -162,7 +163,7 @@ if __name__ == "__main__":
         conn.execute("create database disinfo") 
         conn.close()
     except exc.DBAPIError as e:
-        if isinstance(e.orig, psycopg2.errors.DuplicateDataBase):
+        if isinstance(e.orig, psycopg2.errors.DuplicateDatabase):
             logging.info(e)
         else:
             logging.error(e)
