@@ -98,3 +98,21 @@ def parse_response(response):
             continue
 
     return d
+
+
+if __name__ == "__main__":
+    import os
+    from dotenv import load_dotenv, find_dotenv
+
+    logging.basicConfig(level=logging.INFO)
+    load_dotenv(find_dotenv())
+
+    key = os.getenv("google_key")
+    name = "mozilla london"
+
+    try:
+        r = place_by_name(name, key)
+    except IndexError as e:
+        logging.info(e)
+    response = place_by_id(r, key)
+    logging.info(parse_response(response))
