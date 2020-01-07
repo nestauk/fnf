@@ -1,7 +1,10 @@
 """
-Fetches place names from a PostgreSQL DB, queries them to Google Places API to first, find their Place ID (unique place id given by Google) and second, use the Place ID to get the details of the place. The API response is then parsed and stored in a PostgreSQL DB table.
+Fetches place names from a PostgreSQL DB, queries them to Google Places API to first,
+find their Place ID (unique place id given by Google) and second, use the Place ID 
+to get the details of the place. The API response is then parsed and stored in a PostgreSQL DB table.
 
-It is first checked if the details of a place have already been collected. If not, its MAG ID and name are stored in the `queries` object (sqlalchemy.orm.query.Query) in the form [(123, 'foo'), (234, 'bar')].
+It is first checked if the details of a place have already been collected. If not, its MAG ID and 
+name are stored in the `queries` object (sqlalchemy.orm.query.Query) in the form [(123, 'foo'), (234, 'bar')].
 
 Example of a parsed response:
 {'lat': 51.504589,
