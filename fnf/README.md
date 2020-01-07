@@ -16,6 +16,23 @@ mag_key = MY_API_KEY
 
 To learn how to use the API, check the [official documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/academic-knowledge/home).
 
+## Google Places API ##
+
+### Getting an API key ###
+* Sign in with your Google account to [Google Cloud Platform (GCP)](https://console.cloud.google.com/). 
+* Set up a project and enable billing.
+* Find the **Places API** in the **Marketplace** and enable it.
+* Click on the **CREDENTIALS** tab and generate an API key.
+
+### Using your API key ###
+The Google Places API key is stored in the `.env` file with the following format:
+
+```
+google_key = MY_API_KEY
+```
+
+To learn how to use the API, check the [official documentation](https://developers.google.com/places/web-service/details).
+
 ## How to setup and use a PostgreSQL DB ##
 Install PostgreSQL:
 * For macOS users, the fastest way is to download the [Postgres.app](https://postgresapp.com/) and follow the installation instructions. To connect to a database, make sure that the app is running.
