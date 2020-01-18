@@ -2,6 +2,7 @@ data:
     mag:
         year: 2000
         metadata: ["Id", "Ti", "AA.AfId","AA.AfN","AA.AuId","AA.DAuN","AA.S","CC","D","F.DFN","F.FId","J.JId","J.JN","Pt","RId","Y","DOI","PB","BT","IA","F.FN"]
+        metadata_short: ["Id", "Ti", "AA.AuId","AA.DAuN","AA.S","CC","F.DFN","F.FId","Y","DOI","F.FN"]
         fos: ["disinformation", "misinformation", "fake news", "half truth"]
         entity_name: ['F.FN', 'AA.AuId']
         query_count: 1000
