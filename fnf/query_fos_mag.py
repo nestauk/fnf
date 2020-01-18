@@ -50,12 +50,12 @@ if __name__ == "__main__":
     key = os.getenv("mag_key")
     metadata = config["metadata"]
     fos = config["fos"]
-    entity_name = config["entity_name"]
+    entity_name = config["entity_name"][0]
     year = config["year"]
     query_count = config["query_count"]
     offset = 0
     # Path to external data with file prefix
-    store_path = f'{fnf.project_dir}/{config["store_path"]}'
+    store_path = f'{fnf.project_dir}/{config["store_path"][0]}'
 
     # Build an expandable query for MAG API
     expression = build_composite_expr(fos, entity_name, year)
