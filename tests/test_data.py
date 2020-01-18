@@ -6,10 +6,9 @@ from fnf.data.query_mag_composite import build_composite_expr
 
 
 def test_build_composite_queries_correctly():
-    assert (
-        build_composite_expr(["dog", "cat"], "F.FN", 2000)
-        == "expr=OR(And(Composite(F.FN='dog'), Y>=2000), And(Composite(F.FN='cat'), Y>=2000))"
-    )
+    result = ''.join(list(build_composite_expr(["dog", "cat"], "F.FN", 2000)))
+    expected_result = "expr=OR(And(Composite(F.FN='dog'), Y>=2000),And(Composite(F.FN='cat'), Y>=2000))"
+    assert result == expected_result
 
 
 @mock.patch("fnf.data.query_mag_composite.requests.post", autospec=True)
