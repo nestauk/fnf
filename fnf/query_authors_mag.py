@@ -4,6 +4,8 @@ The pickle file is a list of JSONs where every JSON object is the API response c
 pickle contains a maximum of 1,000 objects (that's the maximum number of papers we can retrieve from MAG with a
 query).
 
+Note that we collect only papers with a DOI.
+
 Example API response:
 {'logprob': -24.006,
  'prob': 3.75255e-11,
@@ -50,7 +52,7 @@ if __name__ == "__main__":
     config = fnf.config["data"]["mag"]
     # API params
     key = os.getenv("mag_key")
-    metadata = config["metadata"]
+    metadata = config["metadata_short"]
     entity_name = config["entity_name"][1]
     year = config["year"]
     query_count = config["query_count"]
@@ -68,6 +70,7 @@ if __name__ == "__main__":
     expressions = build_composite_expr(authors, entity_name, year)
 
     i = 1
+    COLLECTED_DOIs = set()
     for num, expression in enumerate(expressions):
         has_content = True
         offset = 0
@@ -77,7 +80,8 @@ if __name__ == "__main__":
             data = query_mag_api(
                 expression, metadata, key, query_count=query_count, offset=offset
             )
-            results = [ents for ents in data["entities"]]
+            results = [ents for ents in data["entities"] if 'DOI' in ents.keys()]
+            COLLECTED_DOIs.update([result['DOI'] for result in results])
 
             with open("_".join([store_path, f"{i}.pickle"]), "wb") as h:
                 pickle.dump(results, h)
