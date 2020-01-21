@@ -1,3 +1,6 @@
+"""
+Parses a MAG API response which was stored in a pickle. The parsed response is then stored in a PostgreSQL DB.
+"""
 import logging
 import pickle
 import glob
