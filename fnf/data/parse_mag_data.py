@@ -1,3 +1,6 @@
+"""
+Parses data from a MAG API response (JSON format). There are modules to parse papers, affiliations journals, fields of study and authors.
+"""
 import json
 import logging
 import numpy as np
@@ -13,14 +16,19 @@ def parse_papers(response):
         d (dict): Paper metadata.
 
     """
-    d = {}
-    d["id"] = response["Id"]
-    d["prob"] = response["prob"]
-    d["title"] = response["Ti"]
-    d["publication_type"] = response["Pt"]
-    d["year"] = response["Y"]
-    d["date"] = response["D"]
-    d["citations"] = response["CC"]
+    remappings = {
+        "id": "Id",
+        "prob": "prob",
+        "title": "Ti",
+        "publication_type": "Pt",
+        "year": "Y",
+        "date": "D",
+        "citations": "CC",
+    }
+
+    d = {k: response[v] for k, v in remappings.items()}
+
+    # Some MAG fields might be empty - replace empty values with np.nan
     try:
         d["doi"] = response["DOI"]
     except KeyError as e:
