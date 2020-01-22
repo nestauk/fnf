@@ -21,7 +21,7 @@ def place_by_name(place, key, FIND_PLACE=FIND_PLACE):
     
     """
     params = {
-        "input": "{}".format(place),
+        "input": place,
         "fields": "place_id",
         "inputtype": "textquery",
         "key": key,
@@ -30,7 +30,11 @@ def place_by_name(place, key, FIND_PLACE=FIND_PLACE):
     r = requests.get(FIND_PLACE, params=params)
     r.raise_for_status()
 
-    return r.json()["candidates"][0]["place_id"]
+    try:
+        return r.json()["candidates"][0]["place_id"]
+    except IndexError as e:
+        logging.info(f"Failed to find a match for {place}")
+        return None
 
 
 def place_by_id(id, key, PLACE_DETAILS=PLACE_DETAILS):
