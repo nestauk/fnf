@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     load_dotenv(find_dotenv())
 
-    external_data = fnf.config["data"]["external"]["path"]
+    external_data = f'{fnf.project_dir}/{fnf.config["data"]["external"]["path"]}'
 
     # Connect to postgresql
     engine = create_engine(os.getenv("postgresdb"))
