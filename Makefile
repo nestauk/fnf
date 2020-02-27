@@ -93,7 +93,7 @@ endif
 
 ## Set up python interpreter environment
 create_environment:
-	conda env create -f conda_environment.yaml
+	conda env create -f environment.yaml
 	$(call execute_in_env, pip install -e .)
 	$(call execute_in_env, jupyter contrib nbextension install --user)
 	$(call execute_in_env, jupyter-nbextensions_configurator enable --user)
