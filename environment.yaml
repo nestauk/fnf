@@ -2,6 +2,7 @@ name: fnf
 channels:
   - conda-forge
   - defaults
+  - districtdatalabs
 dependencies:
   - pip
   - python=3.6.5
@@ -24,6 +25,8 @@ dependencies:
     - sentencepiece
     - spacy==2.2.3
     - https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.2.0/en_core_web_md-2.2.0.tar.gz
+    - networkx
+    - python-louvain
 
   # Tooling requirements
     - tqdm
